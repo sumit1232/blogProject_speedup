@@ -20,10 +20,6 @@ const App = () => {
           <Route path='/registration' element={<Registration />} />
           <Route path='/blogdetails' element={<BlogDetail />} />
           {/* <Route path='/blogdetails/:id' element={<BlogDetail />} /> */}
-
-
-
-
         </Routes>
       </Router>
     </>
