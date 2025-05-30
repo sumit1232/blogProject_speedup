@@ -24,7 +24,6 @@ const AboutUs = () => {
   
   return (
     <div className="bg-gray-50 min-h-screen pt-8">
-      {/* Hero Section */}
       <section className="max-w-4xl mx-auto text-center mb-12 px-4">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 animate-fade-in-down">
           About <span className="text-blue-600">Us</span>
@@ -33,8 +32,6 @@ const AboutUs = () => {
           We are a passionate team of writers, editors, and creators dedicated to sharing stories, tips, and inspiration with the world.
         </p>
       </section>
-
-      {/* Team Section */}
       <section className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 px-4">
         {data.map((val, index) => (
           <div

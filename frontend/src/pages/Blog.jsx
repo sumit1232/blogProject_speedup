@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Blog = () => {
   const nav = useNavigate();
-  // 1 state defined
   const [data, setData] = useState({ title: '', excerpt: '', image: '', author: '', date: '' })
-  // const [data, setData] = useState({ name: '', email: '', skill: '', mobile: '', address: '' })
   const dataHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
@@ -17,14 +15,12 @@ const Blog = () => {
     alert('Blog Added Successfully...')
     console.log(data)
     await axios.post('http://localhost:3000/blogdetails', data)
-    // redirect to userdata component
     nav('/blogdetails')
   }
 
   return (
     <>
       <div className="bg-gray-50 min-h-screen pt-8">
-        {/* Hero Section */}
         <section className="max-w-4xl mx-auto text-center mb-12 px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 animate-fade-in-down">
             Blog <span className="text-blue-600">Posts</span>
@@ -33,8 +29,6 @@ const Blog = () => {
             Read the latest articles or share your own insights!
           </p>
         </section>
-
-        {/* Blog Submission Form */}
         <section className="max-w-2xl mx-auto mb-12 px-4">
           <form
             action="" onSubmit={(e) => saveForm(e)}

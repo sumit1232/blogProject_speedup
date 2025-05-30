@@ -4,42 +4,28 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const EditBlog = () => {
 
-    // 8
     const nav=useNavigate();
 
-
-    // 4
-    // const [data, setData] = useState({ name: '', skill: '', email: '', mobile: '', address: '' })
     const [data, setData] = useState({ title: '', excerpt: '', image: '', author: '', date: '' })
     
-
-    // 1
     var res = useParams();
     console.log(res.id)
 
-    // 3
     const FetchData = async () => {
         const result = await axios.get(`http://localhost:3000/blogdetails/${res.id}`)
         console.log(result.data)
-        // setData(result.data)
-        // setData({ name: result.data.name, skill: result.data.skill, email: result.data.email, mobile: result.data.mobile, address: result.data.address })
-      setData({title:result.data.title,excerpt:result.data.excerpt,image:result.data.excerpt,author:result.data.author,date:result.data.date})
+      setData({title:result.data.title,excerpt:result.data.excerpt,image:result.data.image,author:result.data.author,date:result.data.date})
       }
 
-    // 2
-    // Access  data of that specific id from json server API
-    useEffect(() => {
+   useEffect(() => {
         FetchData()
     }, [])
 
-    // 6
     const dataHandler = (e) => {
-        // alert()
         setData({ ...data, [e.target.name]: e.target.value })
     }
     console.log(data)
 
-    // 7
     const UpdateForm = async (e) => {
         e.preventDefault()
         console.log(data)
@@ -56,7 +42,7 @@ const EditBlog = () => {
     return (
         <>
   <div className="bg-gray-50 min-h-screen pt-8">
-        {/* Hero Section */}
+   
         <section className="max-w-4xl mx-auto text-center mb-12 px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 animate-fade-in-down">
             Blog <span className="text-blue-600">Posts</span>
@@ -66,7 +52,6 @@ const EditBlog = () => {
           </p>
         </section>
 
-        {/* Blog Submission Form */}
         <section className="max-w-2xl mx-auto mb-12 px-4">
           <form
             action="" onSubmit={(e) => UpdateForm(e)}

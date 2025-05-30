@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { data } from 'react-router-dom'
 import { CiEdit } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
@@ -13,34 +12,21 @@ const Blogdetails = () => {
 
     const result = await axios.get(`http://localhost:3000/blogdetails`)
     console.log(result.data)
-
     setData(result.data)
-    // setData({ name: result.data.name, skill: result.data.skill, email: result.data.email, mobile: result.data.mobile, address: result.data.address })
-
   }
-  // 2
-  // Access  data of that specific id from json server API
   useEffect(() => {
     FetchData()
   }, [])
 
-    const DeleteEmp = async (id) => {
-
-        // alert("Deleted Emp"+id);
-
+    const DeleteData = async (id) => {
         try {
-            // filter
             const result = data.filter((val) => val.id !== id)
             setData(result);
-
             await axios.delete(`http://localhost:3000/blogdetails/${id}`)
-
         } catch (err) {
             console.log(err)
             return;
         }
-
-
     }
   return (
     <>
@@ -66,9 +52,10 @@ const Blogdetails = () => {
                 <span>{val.date}</span>
               </div>
               <NavLink to={`/editblog/${val.id}`}><CiEdit/></NavLink>
-               <i className='fa fa-trash text-danger fw-bold' onClick={() => { if (window.confirm('Are You Sure ?')) { DeleteEmp(val.id) } }}><MdDelete/></i>
+               <i className='fa fa-trash text-danger fw-bold' onClick={() => { if (window.confirm('Are You Sure ?')) { DeleteData(val.id) } }}><MdDelete/></i>
               <a
-                href="#"
+                href="https://detailed.com/50/"
+                target='_blanck'
                 className="text-blue-600 hover:underline font-medium"
               >
                 Read More &rarr;

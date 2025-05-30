@@ -24,7 +24,6 @@ const Home = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen pt-8">
-      {/* Hero Section */}
       <section className="max-w-4xl mx-auto text-center mb-12 px-4">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 animate-fade-in-down">
           Welcome to <span className="text-blue-600">MyBlog</span>
@@ -33,8 +32,6 @@ const Home = () => {
           Your daily dose of inspiration, tips, and stories from passionate writers.
         </p>
       </section>
-
-      {/* Blog Posts Preview */}
       <section className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 px-4">
         {data.map((val, index) => (
           <div
@@ -51,7 +48,7 @@ const Home = () => {
               <h2 className="text-xl font-semibold mb-2 text-gray-800">{val.title}</h2>
               <p className="text-gray-600 mb-4">{val.excerpt}</p>
               <a
-                href="/blog"
+                href="https://detailed.com/50/" target="_blanck"
                 className="text-blue-600 hover:underline font-medium"
               >
                 Read More &rarr;

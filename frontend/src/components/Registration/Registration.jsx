@@ -13,7 +13,6 @@ const Registration = () => {
             Create your account to join our blogging community!
           </p>
         </div>
-        {/* Registration Form */}
         <form className="bg-white rounded-lg shadow-lg p-8 animate-fade-in"
         >
           <div className="mb-4">

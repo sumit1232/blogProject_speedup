@@ -23,9 +23,6 @@ const App = () => {
           <Route path='/blogdetails' element={<BlogDetail />} />
           <Route path='/editblog/:id' element={<EditBlog />} />
           <Route path='*' element={<Pagenotfound />} />
-
-
-          {/* <Route path='/blogdetails/:id' element={<BlogDetail />} /> */}
         </Routes>
       </Router>
     </>
