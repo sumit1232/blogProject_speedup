@@ -6,6 +6,7 @@ import Aboutus from './pages/Aboutus';
 import Blog from './pages/Blog';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
+import BlogDetail from './pages/Blogdetails';
 const App = () => {
   return (
     <>
@@ -17,6 +18,8 @@ const App = () => {
           <Route path='/blog' element={<Blog />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Registration />} />
+          <Route path='/blogdetails/:id' element={<BlogDetail />} />
+
 
 
 
