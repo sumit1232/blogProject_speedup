@@ -1,39 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import { NavLink } from 'react-router-dom';
 
-const posts = [
-  {
-    title: "How to Start Blogging in 2025",
-    excerpt: "Kickstart your blogging journey with these essential tips and tricks for beginners.",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    title: "10 Productivity Hacks for Writers",
-    excerpt: "Boost your creativity and output with these proven productivity hacks.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    title: "Best Tools for Modern Bloggers",
-    excerpt: "Discover the latest tools every blogger should have in their toolkit.",
-    image: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsb2d8ZW58MHx8MHx8fDA%3D",
-  },
-  {
-    title: "How to Start Blogging in 2025",
-    excerpt: "Kickstart your blogging journey with these essential tips and tricks for beginners.",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    title: "10 Productivity Hacks for Writers",
-    excerpt: "Boost your creativity and output with these proven productivity hacks.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D",
-  },
-  {
-    title: "Best Tools for Modern Bloggers",
-    excerpt: "Discover the latest tools every blogger should have in their toolkit.",
-    image: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsb2d8ZW58MHx8MHx8fDA%3D",
-  },
-];
 
 const Home = () => {
+    const [data, setData] = useState([])
+
+    const FetchAPI = async () => {
+        try {
+            const result = await axios.get('http://localhost:3000/blogs')
+            console.log(result.data)
+            console.log("Successfully Fetched Data")
+            setData(result.data)
+
+        } catch (err) {
+            console.log(err)
+            console.log("Faild To fetch Data")
+        }
+    }
+    useEffect(() => {
+        FetchAPI()
+    }, [])
+
   return (
     <div className="bg-gray-50 min-h-screen pt-8">
       {/* Hero Section */}
@@ -48,20 +36,20 @@ const Home = () => {
 
       {/* Blog Posts Preview */}
       <section className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 px-4">
-        {posts.map((post, idx) => (
+        {data.map((val, index) => (
           <div
-            key={idx}
+            key={index}
             className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in"
-            style={{ animationDelay: `${idx * 0.2 + 0.2}s` }}
+            style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
           >
             <img
-              src={post.image}
-              alt={post.title}
+              src={val.image}
+              alt={val.title}
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2 text-gray-800">{post.title}</h2>
-              <p className="text-gray-600 mb-4">{post.excerpt}</p>
+              <h2 className="text-xl font-semibold mb-2 text-gray-800">{val.title}</h2>
+              <p className="text-gray-600 mb-4">{val.excerpt}</p>
               <a
                 href="/blog"
                 className="text-blue-600 hover:underline font-medium"

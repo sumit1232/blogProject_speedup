@@ -1,39 +1,27 @@
-import React from "react";
-
-const team = [
-  {
-    name: "Alex Johnson",
-    role: "Founder & Editor",
-    bio: "Passionate about storytelling and helping others find their voice.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    name: "Maria Lee",
-    role: "Content Strategist",
-    bio: "Loves crafting engaging content and connecting with readers.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    name: "Sam Patel",
-    role: "Tech Lead",
-    bio: "Ensures everything runs smoothly behind the scenes.",
-    image: "https://randomuser.me/api/portraits/men/54.jpg",
-  },
-   {
-    name: "Alex Johnson",
-    role: "Founder & Editor",
-    bio: "Passionate about storytelling and helping others find their voice.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    name: "Maria Lee",
-    role: "Content Strategist",
-    bio: "Loves crafting engaging content and connecting with readers.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-];
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import { NavLink } from 'react-router-dom';
 
 const AboutUs = () => {
+
+      const [data, setData] = useState([])
+       const FetchAPI = async () => {
+        try {
+            const result = await axios.get('http://localhost:3000/team')
+            console.log(result.data)
+            console.log("Successfully Fetched Data")
+            setData(result.data)
+
+        } catch (err) {
+            console.log(err)
+            console.log("Faild To fetch Data")
+        }
+    }
+    useEffect(() => {
+        FetchAPI()
+    }, [])
+
+  
   return (
     <div className="bg-gray-50 min-h-screen pt-8">
       {/* Hero Section */}
@@ -48,21 +36,21 @@ const AboutUs = () => {
 
       {/* Team Section */}
       <section className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 px-4">
-        {team.map((member, idx) => (
+        {data.map((val, index) => (
           <div
-            key={idx}
+            key={index}
             className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in"
-            style={{ animationDelay: `${idx * 0.2 + 0.2}s` }}
+            style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
           >
             <img
-              src={member.image}
-              alt={member.name}
+              src={val.image}
+              alt={val.name}
               className="w-full h-48 object-cover"
             />
             <div className="p-6 text-center">
-              <h2 className="text-xl font-semibold mb-1 text-gray-800">{member.name}</h2>
-              <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-              <p className="text-gray-600">{member.bio}</p>
+              <h2 className="text-xl font-semibold mb-1 text-gray-800">{val.name}</h2>
+              <p className="text-blue-600 font-medium mb-2">{val.role}</p>
+              <p className="text-gray-600">{val.bio}</p>
             </div>
           </div>
         ))}
